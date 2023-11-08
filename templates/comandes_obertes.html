@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comandes Obertes</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Estilos para el popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #000;
+            border-radius: 10px;
+            z-index: 1;
+        }
+
+        /* Estilos para la imagen */
+        .imagen-comanda {
+            float: right; /* Coloca la imagen a la derecha */
+            margin-top: 0px;
+            max-width: 50px; /* Ajusta el tamaño de la imagen */
+            max-height: 50px; /* Ajusta el tamaño de la imagen */
+        }
+        /* Estilos para la imagen de enlace */
+        .enlace-arriba {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Comandes Obertes</h1>
+    <div class="pedidos-container">
+        {% for pedido in pedidos %}
+        <div class="pedido-box">
+            <h3>{{ pedido['titul'] }}</h3>
+            <p>{{ pedido['tipus'] }}</p>
+            <p>{{ pedido['temps'] }}</p>
+            <p>{{ pedido['start'] }} --> {{ pedido['end'] }}</p>
+            <p>{{ pedido['preu'] }}€</p>
+            <!-- Imagen "Veure Comanda" a la derecha -->
+            <img class="imagen-comanda" src="https://play-lh.googleusercontent.com/PPyaPhZJ1EBhv3-vlEUrYf5EsnVVY3D0TSEhKlT5qyyFRoi3wFlw2wUQzsHqJOfhHFxA" height="30px" width="30px" alt="Veure Comanda" onclick="mostrarPopup('{{ pedido['titul'] }}', 'new')">
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <p>La comanda está en camino.</p>
+    </div>
+
+    <script>
+        function mostrarPopup(titulo, status) {
+            // Obtener el elemento del popup
+            var popup = document.getElementById("popup");
+
+            // Mostrar el popup
+            popup.style.display = "block";
+
+            // Puedes personalizar el contenido del popup según tus necesidades
+            // Por ejemplo, mostrar el título de la comanda en el popup
+            popup.innerHTML = "La comanda " + titulo + " está " +status+ ".";
+            setTimeout(function() {
+                popup.style.display = "none";
+            }, 3000); // 3000 milisegundos = 3 segundos
+        }
+    </script>
+    <a href="{{ url_for('pagina_principal') }}" class="enlace-arriba">
+        <img src="https://cdn-icons-png.flaticon.com/512/595/595018.png" height="30px" width="30px" alt="Enlace arriba">
+    </a>
+</body>
+</html>

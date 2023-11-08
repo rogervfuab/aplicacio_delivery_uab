@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Serveis a realitzar</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Estilos para la imagen de enlace */
+        .enlace-arriba {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Serveis a realitzar</h1>
+    <div class="pedidos-container">
+        {% for pedido in pedidos %}
+        <div class="pedido-box">
+            <h3>{{ pedido['titul'] }}</h3>
+            <p>{{ pedido['tipus'] }}</p>
+            <p>{{ pedido['temps'] }}</p>
+            <p>{{ pedido['start'] }} --> {{ pedido['end'] }}</p>
+            <p>{{ pedido['preu'] }}€</p>
+        </div>
+        {% endfor %}
+    </div>
+    <a href="{{ url_for('pagina_principal') }}" class="enlace-arriba">
+        <img src="https://cdn-icons-png.flaticon.com/512/595/595018.png" height="30px" width="30px" alt="Enlace arriba">
+    </a>
+</body>
+</html>

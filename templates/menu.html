@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menú</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Estilos para la imagen de enlace */
+        .enlace-arriba {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Menú</h1>
+    <form method="POST" action="{{ url_for('nueva_comanda') }}">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo"><br>
+
+        <label for="tipus">Tipo:</label>
+        <select id="tipus" name="tipus">
+            <option value="Comida">Comida</option>
+            <option value="Bebida">Bebida</option>
+            <option value="Postre">Postre</option>
+        </select><br>
+
+        <label for="temps">Tiempo:</label>
+        <input type="text" id="temps" name="temps"><br>
+
+        <label for="ubi_start">Ubicación de inicio:</label>
+        <input type="text" id="ubi_start" name="ubi_start"><br>
+
+        <label for="ubi_end">Ubicación de fin:</label>
+        <input type="text" id="ubi_end" name="ubi_end"><br>
+
+        <label for="descripcio">Descripción:</label>
+        <input type="text" id="descripcio" name="descripcio"><br>
+
+        <label for="preu">Precio:</label>
+        <input type="text" id="preu" name="preu"><br>
+
+        <button type="submit" class="menu-icon2">Confirmar</button>
+    </form>
+    <a href="{{ url_for('pagina_principal') }}" class="enlace-arriba">
+        <img src="https://cdn-icons-png.flaticon.com/512/595/595018.png" height="30px" width="30px" alt="Enlace arriba">
+    </a>
+</body>
+</html>

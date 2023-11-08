@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pedidos</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Estilos para la imagen de enlace */
+        .enlace-arriba {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Comandes</h1>
+    <div class="pedidos-container">
+        {% for pedido in pedidos %}
+        <div class="pedido-box">
+            <h3>{{ pedido['titul'] }}</h3>
+            <p>{{ pedido['tipus'] }}</p>
+            <p>{{ pedido['temps'] }}</p>
+            <p>{{ pedido['start'] }} --> {{ pedido['end'] }}</p>
+            <p>{{ pedido['preu'] }}€</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Agregar un formulario para el menú -->
+    <a id="menu-toggle" href="{{ url_for('menu') }}">
+        <div class="menu-icon">
+            <!-- Reemplaza 'ruta_de_la_imagen' con la URL o ruta de tu imagen -->
+            <img src="https://imgs.search.brave.com/I7yH03kQqgJSWCpjGvP1ybCtb8VTl1pt4b0NYAAefxQ/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jZG4t/MC5lbW9qaXMud2lr/aS9lbW9qaS1waWNz/L21pY3Jvc29mdC9w/YWNrYWdlLW1pY3Jv/c29mdC5wbmc" height="75px" width="75px">
+        </div>
+    </a>
+    <a href="{{ url_for('pagina_principal') }}" class="enlace-arriba">
+        <img src="https://cdn-icons-png.flaticon.com/512/595/595018.png" height="30px" width="30px" alt="Enlace arriba">
+    </a>
+
+    
+</body>
+</html>
