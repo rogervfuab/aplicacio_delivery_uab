@@ -31,32 +31,15 @@
             <p>{{ pedido['temps'] }}</p>
             <p>{{ pedido['start'] }} --> {{ pedido['end'] }}</p>
             <p>{{ pedido['preu'] }}€</p>
-            <img class="imagen-comanda" src="https://images.vexels.com/media/users/3/200066/isolated/preview/6778656beb270356664d5a58dc60f34e-scooter-de-entrega-de-pizza.png" height="45px" width="45px" alt="Veure Comanda" onclick="eliminarComanda(this)">
+            <a href='/servei_realitzat/ {{ loop.index }}'>
 
+                <img class="imagen-comanda" src="https://images.vexels.com/media/users/3/200066/isolated/preview/6778656beb270356664d5a58dc60f34e-scooter-de-entrega-de-pizza.png" height="45px" width="45px" alt="Veure Comanda">
+            </a>
         </div>
         {% endfor %}
     </div>
     <a href="{{ url_for('pagina_principal') }}" class="enlace-arriba">
         <img src="https://cdn-icons-png.flaticon.com/512/595/595018.png" height="30px" width="30px" alt="Enlace arriba">
     </a>
-    <script>
-        const listaPedidos = {{ pedidos|tojson|safe }}; // Cargar la lista de pedidos desde el servidor
-
-        function eliminarComanda(elemento, titulo) {
-            // Ocultar el pedido correspondiente
-            elemento.parentElement.style.display = 'none';
-
-            // Actualizar la lista de pedidos en JavaScript
-            for (let i = 0; i < listaPedidos.length; i++) {
-                if (listaPedidos[i]['titul'] === titulo) {
-                    listaPedidos.splice(i, 1);
-                    break;
-                }
-            }
-
-            // Puedes hacer lo que necesites con la lista de pedidos actualizada
-            console.log(listaPedidos);
-        }
-    </script>
 </body>
 </html>

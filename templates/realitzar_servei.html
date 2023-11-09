@@ -21,7 +21,7 @@
     </style>
 </head>
 <body>
-    <h1>Serveis a realitzar</h1>
+    <h1>Serveis a realitzar</h1>    
     <div class="pedidos-container">
         {% for pedido in pedidos %}
         <div class="pedido-box">
@@ -30,8 +30,9 @@
             <p>{{ pedido['temps'] }}</p>
             <p>{{ pedido['start'] }} --> {{ pedido['end'] }}</p>
             <p>{{ pedido['preu'] }}€</p>
-            <img class="imagen-comanda" src="https://cdn-icons-png.flaticon.com/512/38/38398.png" height="30px" width="30px" alt="Veure Comanda">
-
+            <a href='/acceptat/ {{ loop.index }}'>
+                <img class="imagen-comanda" src="https://cdn-icons-png.flaticon.com/512/38/38398.png" height="30px" width="30px" alt="Veure Comanda">
+            </a>
         </div>
         {% endfor %}
     </div>

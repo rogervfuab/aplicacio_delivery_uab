@@ -170,11 +170,31 @@ def nueva_comanda():
 def comandes_obertes():
     return render_template('comandes_obertes.html', pedidos = p_new)
 
+llista_serveis_a_realitzar = [{'titul': 'Llibre Quijote', 'tipus': 'Llibre', 'temps':'1','start': 'Biblioteca', 'end': 'Engiyeria', 'preu': '3'}]
+
+@app.route('/acceptat/ <num>', methods=['GET', 'POST'])
+def acceptat(num):
+    numerop_general = (int(num) -1)
+    pedido_a_afegir_i_a_eliminar = serveis_publics[numerop_general]
+    llista_serveis_a_realitzar.append(pedido_a_afegir_i_a_eliminar)
+    serveis_publics.remove(pedido_a_afegir_i_a_eliminar)
+    return redirect(url_for('serveis'))
+
 @app.route('/serveis', methods = ['GET', 'POST'])
 def serveis():
     return render_template('realitzar_servei.html', pedidos = serveis_publics)
 
-llista_serveis_a_realitzar = [{'titul': 'Llibre Quijote', 'tipus': 'Llibre', 'temps':'1','start': 'Biblioteca', 'end': 'Engiyeria', 'preu': '3'}]
+
+@app.route('/servei_realitzat/ <num>', methods=['GET', 'POST'])
+def servei_realitzat(num):
+    numerop_general = (int(num) -1)
+    pedido_a_afegir_i_a_eliminar = llista_serveis_a_realitzar[numerop_general]
+    llista_serveis_a_realitzar.remove(pedido_a_afegir_i_a_eliminar)
+    return redirect(url_for('serveis_a_realitzar'))
+
+
+
+
 @app.route('/serveis_a_realitzar', methods = ['GET', 'POST'])
 def serveis_a_realitzar():
     return render_template('serveis_a_realitzar.html', pedidos = llista_serveis_a_realitzar)
