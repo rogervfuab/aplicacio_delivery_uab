@@ -159,6 +159,7 @@ def nueva_comanda():
 
         # Agrega la nueva comanda a la lista de pedidos
         p_new.append(nueva_comanda)
+        print(p_new)
 
         # Redirige a la página de pedidos después de agregar la comanda
         return redirect(url_for('comandes_obertes'))
@@ -193,16 +194,33 @@ def servei_realitzat(num):
     return redirect(url_for('serveis_a_realitzar'))
 
 
-
+@app.route('/comandes_obertes_acceptada/ <num>', methods=['GET', 'POST'])
+def comandes_obertes_acceptada(num):
+    numerop_general = (int(num) -1)
+    pedido_a_afegir_i_a_eliminar = p_new[numerop_general]
+    p_new.remove(pedido_a_afegir_i_a_eliminar)
+    p_done.append(pedido_a_afegir_i_a_eliminar)
+    return redirect(url_for('comandes_obertes'))
 
 @app.route('/serveis_a_realitzar', methods = ['GET', 'POST'])
 def serveis_a_realitzar():
     return render_template('serveis_a_realitzar.html', pedidos = llista_serveis_a_realitzar)
 
+@app.route('/state/ <num>', methods = ['GET', 'POST'])
+def state(num):
+    numerop_general = (int(num) -1)
+    pedido_a_afegir_i_a_eliminar = [p_new[numerop_general]]
+    return render_template('state.html', pedidos=pedido_a_afegir_i_a_eliminar)
+
+@app.route('/edit_state', methods = ['GET', 'POST'])
+def edit_state():
+    return render_template('state.html')
 
 @app.route('/ranking', methods = ['GET', 'POST'])
 def ranking():
     return render_template('ranking.html')
+
+
 
 
 if __name__ == '__main__':

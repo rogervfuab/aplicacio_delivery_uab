@@ -27,10 +27,15 @@
         {% for pedido in pedidos %}
         <div class="pedido-box">
             <h3>{{ pedido['titul'] }}</h3>
-            <p>{{ pedido['tipus'] }}</p>
-            <p>{{ pedido['temps'] }}</p>
-            <p>{{ pedido['start'] }} --> {{ pedido['end'] }}</p>
-            <p>{{ pedido['preu'] }}€</p>
+            <p><strong>Tipus de Comanda:</strong> {{ pedido['tipus'] }}</p>
+            <p><strong>Temps per ferla:</strong> {{ pedido['temps'] }}</p>
+            <p><strong>Lloc on s'ha de recollir:</strong> {{ pedido['start'] }} </p>
+            <p><strong>Lloc on s'ha de portar:</strong>  {{ pedido['end'] }}</p>
+            <p><strong>Preu per fer la comanda:</strong> {{ pedido['preu'] }}€</p>
+            <a href='/edit_state'>
+
+                <img class="imagen-comanda" src="https://play-lh.googleusercontent.com/PPyaPhZJ1EBhv3-vlEUrYf5EsnVVY3D0TSEhKlT5qyyFRoi3wFlw2wUQzsHqJOfhHFxA" height="30px" width="30px" alt="Veure Comanda" onclick="mostrarPopup('{{ pedido['titul'] }}', '{{pedido['state']}}')">
+            </a>
             <a href='/servei_realitzat/ {{ loop.index }}'>
 
                 <img class="imagen-comanda" src="https://images.vexels.com/media/users/3/200066/isolated/preview/6778656beb270356664d5a58dc60f34e-scooter-de-entrega-de-pizza.png" height="45px" width="45px" alt="Veure Comanda">
