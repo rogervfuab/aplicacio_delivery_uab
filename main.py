@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from data import p_done, p_new, serveis_publics
 
 app = Flask(__name__)
 app.secret_key = 'clave_secreta'  # Debes cambiar esto a una clave segura
@@ -10,94 +10,7 @@ users = {
     'roger': generate_password_hash('a'),
 }
 
-# Lista de pedidos de ejemplo
-p_done = [
-    {'titul': 'Llibre Quijote', 'tipus': 'Llibre', 'temps':'1','start': 'Biblioteca', 'end': 'Engiyeria', 'preu': '3'},
-]
-p_new=[]
 
-serveis_publics = [
-    {
-        'titul': 'Llibre Quijote',
-        'tipus': 'Llibre',
-        'temps': '1',
-        'start': 'Biblioteca',
-        'end': 'Enginyeria',
-        'preu': '3'
-    },
-    {
-        'titul': 'Pizza Margherita',
-        'tipus': 'Comida',
-        'temps': '30 minutos',
-        'start': 'Pizzeria',
-        'end': 'Casa',
-        'preu': '10'
-    },
-    {
-        'titul': 'Camiseta Roja',
-        'tipus': 'Ropa',
-        'temps': '2 días',
-        'start': 'Tienda de Ropa',
-        'end': 'Domicilio',
-        'preu': '15'
-    },
-    {
-        'titul': 'Coca-Cola',
-        'tipus': 'Bebida',
-        'temps': '1 hora',
-        'start': 'Supermercado',
-        'end': 'Casa',
-        'preu': '2'
-    },
-    {
-        'titul': 'Auriculares Inalámbricos',
-        'tipus': 'Electrónica',
-        'temps': '3 días',
-        'start': 'Tienda de Electrónica',
-        'end': 'Oficina',
-        'preu': '50'
-    },
-    {
-        'titul': 'Flores Rosadas',
-        'tipus': 'Regalo',
-        'temps': '2 horas',
-        'start': 'Floristería',
-        'end': 'Hospital',
-        'preu': '20'
-    },
-    {
-        'titul': 'DVD Película de Acción',
-        'tipus': 'Entretenimiento',
-        'temps': '1 día',
-        'start': 'Tienda de Películas',
-        'end': 'Casa',
-        'preu': '5'
-    },
-    {
-        'titul': 'Zapatillas Deportivas',
-        'tipus': 'Ropa Deportiva',
-        'temps': '2 días',
-        'start': 'Tienda Deportiva',
-        'end': 'Gimnasio',
-        'preu': '60'
-    },
-    {
-        'titul': 'Agua Mineral',
-        'tipus': 'Bebida',
-        'temps': '45 minutos',
-        'start': 'Supermercado',
-        'end': 'Casa',
-        'preu': '1'
-    },
-    {
-        'titul': 'Portátil Lenovo',
-        'tipus': 'Tecnología',
-        'temps': '4 días',
-        'start': 'Tienda de Electrónica',
-        'end': 'Oficina',
-        'preu': '700'
-    }
-]
 @app.route('/', methods=['GET', 'POST'])
 def inici():
     return render_template('inici.html', pedidos=p_done)
@@ -159,7 +72,6 @@ def nueva_comanda():
 
         # Agrega la nueva comanda a la lista de pedidos
         p_new.append(nueva_comanda)
-        print(p_new)
 
         # Redirige a la página de pedidos después de agregar la comanda
         return redirect(url_for('comandes_obertes'))
@@ -212,15 +124,18 @@ def state(num):
     pedido_a_afegir_i_a_eliminar = [p_new[numerop_general]]
     return render_template('state.html', pedidos=pedido_a_afegir_i_a_eliminar)
 
-@app.route('/edit_state', methods = ['GET', 'POST'])
-def edit_state():
-    return render_template('state.html')
 
 @app.route('/ranking', methods = ['GET', 'POST'])
 def ranking():
     return render_template('ranking.html')
 
+@app.route('/banc', methods = ['GET', 'POST'])
+def banc():
+    pass
 
+@app.route('/edit_state', methods = ['GET', 'POST'])
+def edit_state():
+    return render_template('state.html')
 
 
 if __name__ == '__main__':
