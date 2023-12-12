@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ranking</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+    <style>
+        /* Contenedor del ranking */
+        .ranking {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 15px;
+        }
+        
+        /* Elemento de persona */
+        .persona {
+            background-color: #fff;
+            border: 2px solid #e0e0e0; /* Borde más suave */
+            padding: 15px;
+            margin: 10px 0;
+            display: flex;
+            border-radius: 10px;
+            align-items: center;
+        }
+        
+        /* Estilos específicos para los primeros tres lugares */
+        .primero { background-color: #ffd700; } /* Amarillo dorado */
+        .segundo { background-color: #c0c0c0; } /* Gris plateado */
+        .tercero { background-color: #b87333; } /* Bronce más oscuro */
+        
+        /* Imagen de puntuación */
+        .puntuacion-img {
+            margin-left: auto;
+            margin-top: 0;
+        }
+        
+        /* Estilos para la imagen de enlace */
+        .enlace-arriba {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            cursor: pointer;
+        }
+        
+        
+        
+    </style>
+</head>
+<body>
+    <div class="ranking">
+        <h1>Ranking</h1>
+
+        <!-- Persona 1 - Primer lugar -->
+        <div class="persona primero">
+            <h2>Roger</h2>
+            <img class="puntuacion-img" src="https://static.vecteezy.com/system/resources/previews/016/017/089/non_2x/five-stars-rating-with-transparent-background-free-png.png" height="130px" width="130px" alt="Puntuación: 1000">
+        </div>
+
+        <!-- Persona 2 - Segundo lugar -->
+        <div class="persona segundo">
+            <h2>Eric</h2>
+            <img class="puntuacion-img" src="https://static.vecteezy.com/system/resources/previews/016/016/805/non_2x/four-stars-rating-with-transparent-background-free-png.png" height="130px" width="130px" alt="Puntuación: 1000">
+        </div>
+
+        <!-- Persona 3 - Tercer lugar -->
+        <div class="persona tercero">
+            <h2>Sergi</h2>
+            <img class="puntuacion-img" src="https://static.vecteezy.com/system/resources/previews/016/314/363/original/three-stars-rating-with-transparent-background-free-png.png" height="130px" width="130px" alt="Puntuación: 1000">
+        </div>
+
+        <!-- Persona 4 en adelante -->
+        <div class="persona">
+            <h2>Nina</h2>
+            <img class="puntuacion-img" src="https://static.vecteezy.com/system/resources/previews/016/314/363/original/three-stars-rating-with-transparent-background-free-png.png" height="130px" width="130px" alt="Puntuación: 1000">
+        </div>
+
+        <div class="persona">
+            <h2>Chanquete</h2>
+            <img class="puntuacion-img" src="https://static.vecteezy.com/system/resources/previews/016/017/445/original/two-stars-rating-with-transparent-background-free-png.png" height="130px" width="130px" alt="Puntuación: 1000">
+        </div>
+
+        <!-- Puedes continuar agregando más personas en el ranking -->
+    </div>
+    <a href="{{ url_for('pagina_principal') }}" class="enlace-arriba">
+        <img src="https://cdn-icons-png.flaticon.com/512/595/595018.png" height="30px" width="30px" alt="Enlace arriba">
+    </a>
+</body>
+</html>

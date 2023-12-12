@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comandes Obertes</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Estilos para el popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #000;
+            border-radius: 10px;
+            z-index: 1;
+        }
+
+        /* Estilos para la imagen */
+        .imagen-comanda {
+            float: right; /* Coloca la imagen a la derecha */
+            margin-top: 0px;
+            max-width: 50px; /* Ajusta el tamaño de la imagen */
+            max-height: 50px; /* Ajusta el tamaño de la imagen */
+        }
+        /* Estilos para la imagen de enlace */
+        .enlace-arriba {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Comandes Obertes</h1>
+    <div class="pedidos-container">
+        {% for pedido in pedidos %}
+        <div class="pedido-box">
+            <h3>{{ pedido['titul'] }}</h3>
+            <p><strong>Tipus de Comanda:</strong> {{ pedido['tipus'] }}</p>
+            <p><strong>Temps per ferla:</strong> {{ pedido['temps'] }}</p>
+            <p><strong>Lloc on s'ha de recollir:</strong> {{ pedido['start'] }} </p>
+            <p><strong>Lloc on s'ha de portar:</strong>  {{ pedido['end'] }}</p>
+            <p><strong>Preu per fer la comanda:</strong> {{ pedido['preu'] }}€</p>
+            <!-- Imagen "Veure Comanda" a la derecha -->
+            <a href='/state/ {{ loop.index }}'>
+
+                <img class="imagen-comanda" src="https://play-lh.googleusercontent.com/PPyaPhZJ1EBhv3-vlEUrYf5EsnVVY3D0TSEhKlT5qyyFRoi3wFlw2wUQzsHqJOfhHFxA" height="30px" width="30px" alt="Veure Comanda" onclick="mostrarPopup('{{ pedido['titul'] }}', '{{pedido['state']}}')">
+            </a>
+
+            <a href='/comandes_obertes_acceptada/ {{ loop.index }}'>
+
+                <img class="imagen-comanda" src="https://images.vexels.com/media/users/3/200066/isolated/preview/6778656beb270356664d5a58dc60f34e-scooter-de-entrega-de-pizza.png" height="45px" width="45px" alt="Veure Comanda">
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <p>La comanda está en camino.</p>
+    </div>
+
+    <script>
+        function mostrarPopup(titulo, status) {
+            // Obtener el elemento del popup
+            var popup = document.getElementById("popup");
+
+            // Mostrar el popup
+            popup.style.display = "block";
+
+            // Puedes personalizar el contenido del popup según tus necesidades
+            // Por ejemplo, mostrar el título de la comanda en el popup
+            status = status || "no acceptada";
+
+            popup.innerHTML = "La comanda " + titulo + " está " +status+ ".";
+            setTimeout(function() {
+                popup.style.display = "none";
+            }, 3000); // 3000 milisegundos = 3 segundos
+        }
+    </script>
+    <a href="{{ url_for('pagina_principal') }}" class="enlace-arriba">
+        <img src="https://cdn-icons-png.flaticon.com/512/595/595018.png" height="30px" width="30px" alt="Enlace arriba">
+    </a>
+
+    <!-- Agregar un formulario para el menú -->
+    <a id="menu-toggle" href="{{ url_for('menu') }}">
+        <div class="menu-icon">
+            <!-- Reemplaza 'ruta_de_la_imagen' con la URL o ruta de tu imagen -->
+            <img src="https://i.pinimg.com/originals/47/f4/0f/47f40f52dd0e9531b4e2ca343baddc8b.png" height="75px" width="75px">
+        </div>
+    </a>
+
+</body>
+</html>

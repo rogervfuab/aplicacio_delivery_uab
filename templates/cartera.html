@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cantidad de Dinero Disponible</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>        
+        /* Estilos para el contenedor del dinero */
+        .dinero-container {
+            max-width: 400px;
+            margin: 0 auto; /* Margen automático en los lados izquierdo y derecho para centrar */
+            border: 2px solid #fff;
+            border-radius: 10px;
+            padding: 10px;
+
+            
+        }
+        
+
+        #cantidad-dinero {
+            font-size: 24px;
+        }
+
+        /* Estilos para el botón de "Añadir Dinero" */
+        #anadir-dinero {
+            padding: 10px 20px;
+            background-color: #27ae60;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Estilos para el enlace de arriba */
+        .enlace-arriba {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            cursor: pointer;
+        }
+
+        .enlace-arriba img {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dinero-section">
+        <div class="dinero-container">
+            <h1>Cantidad de Dinero Disponible</h1>
+            <p>En este momento tienes: <span id="cantidad-dinero">$1,000</span>.</p>
+            <button id="anadir-dinero">Afegir Diners</button>
+        </div>
+    </div>
+    <a href="{{ url_for('pagina_principal') }}" class="enlace-arriba">
+        <img src="https://cdn-icons-png.flaticon.com/512/595/595018.png" alt="Enlace arriba">
+    </a>
+
+    <script>
+        // Obtén el elemento de la cantidad de dinero
+        const cantidadDineroElement = document.getElementById("cantidad-dinero");
+
+        // Obtén el botón de "Añadir Dinero"
+        const anadirDineroButton = document.getElementById("anadir-dinero");
+
+        // Agrega un controlador de eventos al botón para aumentar la cantidad de dinero
+        anadirDineroButton.addEventListener("click", function () {
+            // Obtén la cantidad de dinero actual
+            const cantidadActual = parseFloat(cantidadDineroElement.textContent.replace("$", "").replace(",", ""));
+
+            // Aumenta la cantidad de dinero (puedes cambiar la cantidad aquí)
+            const nuevaCantidad = cantidadActual + 100;
+
+            // Actualiza el contenido de la cantidad de dinero
+            cantidadDineroElement.textContent = "$" + nuevaCantidad.toLocaleString(); // Formato con comas
+        });
+    </script>
+</body>
+</html>

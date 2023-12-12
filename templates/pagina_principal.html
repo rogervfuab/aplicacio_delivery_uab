@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pedidos</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .pedido-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pedido-box p,
+        .pedido-box ol,
+        .pedido-box li {
+            margin: 0;
+            text-align: left; /* Alinea el texto a la izquierda */
+            list-style: none; /* Elimina los puntos de las listas */
+        }
+        .texto-izquierda {
+            position: absolute;
+            top: 59px;
+            left: 10px;
+            width: 18%;
+            font-size: 15px;
+        }
+        .recuadro {
+            background-color: #fff; /* Fondo blanco */
+            border: 1px solid #000; /* Borde negro */
+            padding: 10px;
+            border-radius: 10px;
+        }
+        /* Estilos para centrar el contenido */
+        .contenedor-central {
+            max-width: 1000px; /* Ancho máximo del contenedor */
+            margin: 0 auto; /* Centra el contenedor horizontalmente */
+            padding: 50px; /* Agrega espacio alrededor del contenido */
+            border-radius: 10px;
+
+        }
+        /* Estilos para los enlaces */
+        .enlace {
+            text-decoration: none; /* Elimina el subrayado del enlace */
+            padding: 10px 20px; /* Espaciado interior del enlace */
+            background-color: #007BFF; /* Fondo azul */
+            color: #fff; /* Color del texto */
+            border: 1px solid #007BFF; /* Borde azul */
+            border-radius: 5px; /* Bordes redondeados */
+            margin: 5px; /* Margen entre enlaces */
+            display: block; /* Mostrar enlaces en bloque para que se apliquen estilos individualmente */
+        }
+        /* Estilos para organizar enlaces en filas */
+        .fila-enlaces {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px;
+        }
+        .fila-enlaces a {
+            flex: 1;
+            padding: 70px;
+            border-radius: 10px;
+
+        }
+        #cartera-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="texto-izquierda">
+        <img class="imagen-izquierda" src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Logo_uab.png" alt="Imagen izquierda" height="90px" width="200px">
+        <div class="recuadro">
+            <h4>Que fem?</h4>
+            <p>Intentem proveir un servei de entrega de coses a la UAB</p>
+            <h4>Qui som?</h4>
+            <p>Eric</p>
+            <p>Sergi</p>
+            <p>Nina</p>
+            <p>Roger</p>
+            <h4>Com funciona?</h4>
+            <p>1. Clickar a historic de comandes per veure les comandes realitzades.</p>
+            <p>2. Clickar a comandes obertes, veure les que teniu obertes i com van, el seu progress.</p>
+            <p>3. Clickar a realitzar servei, veure les comandes de altre gent i acceptar si us interesa alguna.</p>
+            <p>4. Clickar a serveis a realitzar a realitzar per veure els serveis que tens en actiu i has de fer.</p>
+            <p>5. Clickar a ranking, veure el ranking de gent i ames a més, puntuar al teu delivery guy.</p>
+            <p>6. Clickar a Descubrei la UAB, per saber mes sobre la nostre universitat.</p>
+
+
+
+        </div>
+    </div>
+    <h1>Pàgina Principal</h1>
+
+    <!-- Recuadro amarillo oscuro con el subtítulo "FILTRAR" -->
+    <div class="contenedor-central" style="background-color: #FFA500; padding: 10px; color: #fff;">
+        <h2>Benvingut a DelyUAB</h2>
+    </div>
+
+    <!-- Organizar enlaces en dos filas -->
+    <div class="contenedor-central">
+        <div class="fila-enlaces">
+            <!-- Primera fila de enlaces -->
+            <a class="enlace" href="{{ url_for('pedidos') }}">Històric de Comandes</a>
+            <a class="enlace" href="{{ url_for('comandes_obertes') }}">Comandes obertes</a>
+        </div>
+        <div class="fila-enlaces">
+            <!-- Segunda fila de enlaces -->
+            <a class="enlace" href="{{ url_for('serveis') }}">Realitzar servei</a>
+            <a class="enlace" href="{{ url_for('serveis_a_realitzar') }}">Serveis a realitzar</a>
+
+        </div>
+        <div class="fila-enlaces">
+            <!-- Segunda fila de enlaces -->
+            <a class="enlace" href="{{ url_for('ranking') }}">Ranking Repartidors</a>
+            <a class="enlace" href="https://www.uab.cat/">Descubreix la UAB</a>
+
+        </div>
+    </div>
+
+    <a id="cartera-toggle" href="{{ url_for('cartera') }}">
+        <div class="cartera-icon">
+            <!-- Reemplaza 'ruta_de_la_imagen' con la URL o ruta de tu imagen -->
+            <img src="https://png.pngtree.com/png-clipart/20231015/original/pngtree-premium-banking-money-graph-isolated-photo-png-image_13310611.png" height="75px" width="75px">
+        </div>
+    </a>
+</body>
+</html>
